@@ -13,6 +13,8 @@ jobs:
       INVENTREE_BACKUP_DIR: $GITHUB_WORKSPACE/path/to/backup
       INVENTREE_MEDIA_ROOT: $GITHUB_WORKSPACE/path/to/media
       INVENTREE_STATIC_ROOT: $GITHUB_WORKSPACE/path/to/static
+      INVENTREE_SITE_URL: http://localhost:8000 # Replace with your actual URL
+      INVENTREE_TRUSTED_ORIGINS: http://localhost,http://*.localhost,http://*localhost:8000,http://*localhost:5173
 
     steps:
       - name: Checkout Code
@@ -22,9 +24,6 @@ jobs:
         with:
           python-version: 3.9
       - name: Install InvenTree
-        env:
-          INVENTREE_SITE_URL: http://localhost:8000 # Replace with your actual URL
-          INVENTREE_TRUSTED_ORIGINS: http://localhost,http://*.localhost,http://*localhost:8000,http://*localhost:5173
         run: |
           sudo apt-get install python3-dev python3-pip python3-venv python3-wheel g++
           pip3 install invoke
